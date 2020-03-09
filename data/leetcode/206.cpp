@@ -24,5 +24,6 @@ public:
             pre =curr;
             curr = temp;
         }
+        return pre;
     }
 };

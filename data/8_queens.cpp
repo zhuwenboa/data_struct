@@ -1,9 +1,14 @@
 #include<iostream>
 
 void printQueens(int *);
+
 bool isOk(int, int);
+
 int *result = new int[8];//全局或成员变量,下标表示行,值表示queen存储在哪一列
-void cal8queens(int row) { // 调用方式：cal8queens(0);
+
+
+void cal8queens(int row) 
+{ // 调用方式：cal8queens(0);
   if (row == 8) { // 8个棋子都放置好了，打印结果
     printQueens(result);
     return; // 8行棋子都放好了，已经没法再往下递归了，所以就return
@@ -16,7 +21,8 @@ void cal8queens(int row) { // 调用方式：cal8queens(0);
   }
 }
 
-bool isOk(int row, int column) {//判断row行column列放置是否合适
+bool isOk(int row, int column) 
+{//判断row行column列放置是否合适
   int leftup = column - 1, rightup = column + 1;
   for (int i = row-1; i >= 0; --i) { // 逐行往上考察每一行
     if (result[i] == column) return false; // 第i行的column列有棋子吗？

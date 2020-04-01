@@ -8,9 +8,17 @@ using namespace std;
 class Solution 
 {
 public:
+    enum Index  
+    {
+        GOOD,
+        BAD,
+        UNKNOW
+    };
     bool canJump(vector<int>& nums) 
     {
-
+        judge.resize(nums.size(), UNKNOW);
+        judge[nums.size()-1] = GOOD;
+        return dp_huisu(0, nums);
     }
     //暴力回溯算法
     bool huisu(int position, vector<int>& nums)
@@ -30,18 +38,19 @@ public:
     //动态规划，对回溯进行标记，自顶向下
     bool dp_huisu(int position, vector<int>& nums)
     {
-        if(position == nums.size() -1)
-            return true;
+        if(judge[position] != UNKNOW)
+            return judge[position] == GOOD ? true : false;
         //当前位置可以跳到最远的位置
         int Longjumplen = min(position + nums[position],  static_cast<int>(nums.size() -1) );
         for(int i = position + 1; i <= Longjumplen; ++i)
         {
-            if(judge.count(position) > 0)
-                continue;
-            judge.insert(position);
             if(dp_huisu(i, nums))
+            {
+                judge[position] = GOOD;
                 return true;
+            }
         }
+        judge[position] = BAD;
         return false;
     }
 
@@ -74,5 +83,5 @@ public:
         }
         return lastPos == 0;
     }
-    set<int> judge;
+    vector<Index> judge;
 };

@@ -11,7 +11,7 @@ using namespace std;
     哈希表map+平衡二叉树(红黑树 set)实现的LFU缓存
     put和get的时间复杂度均为O(logN),操作的时间复杂度瓶颈就在于平衡二叉树的插入删除时间均为O(logN)。
 */
-/*
+
 class LFUCache_Set_Table 
 {
 public:
@@ -85,7 +85,7 @@ private:
     unordered_map<int, Value> table;
     set<Value> judge;
 };
-*/
+
 
 /*
     使用双哈希表和双向链表来设计数据结构。
@@ -197,4 +197,5 @@ int main()
     cache.put(4,4);
     std::cout << cache.get(1) << "\n";;
     std::cout << cache.get(3) << "\n";;
-    std::cout << cache.get(4) << "\n";}
+    std::cout << cache.get(4) << "\n";
+}

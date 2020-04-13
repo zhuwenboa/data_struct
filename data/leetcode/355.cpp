@@ -37,6 +37,9 @@ public:
     /** Compose a new tweet. */
     void postTweet(int userId, int tweetId) 
     {
+        /*采用push_front是因为将该用户最新的推文插入在头结点中，这样子相当于对该用户的推文进行了排序。
+          等到下面要找到top_ten个推文时，我们就可以采用合并K个链表的思想，用优先队列进行合并
+        */ 
         user_tw[userId].push_front({tweetId, ++timefd});
     }
     

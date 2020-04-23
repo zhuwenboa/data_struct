@@ -4,9 +4,11 @@
 
 using namespace std;
 
-class Solution {
+class Solution 
+{
 public:
     vector<int> count;
+    //迭代法 
     int dp(vector<int>& coins, int rem)
     {
         if(rem < 0)
@@ -30,12 +32,30 @@ public:
 
     }
 
+    //自底向上
+    int dp2(vector<int>& coins, int amount)
+    {
+        vector<int> DP(amount+1, amount+1);
+        DP[0] = 0;
+        for(int i = 1; i <= amount; ++i)
+        {
+            for(auto coin : coins)
+            {
+                if(coin <= i)
+                {
+                    DP[i] = min(DP[i], DP[i - coin] + 1);
+                }
+            }
+        }
+        return DP[amount] > amount ? -1 : DP[amount];
+    }
+
     int coinChange(vector<int>& coins, int amount) 
     {
         if(amount < 1)
             return 0;
         count.resize(amount);  
-        return  dp(coins, amount);
+        return dp(coins, amount);
     }
 };
 

@@ -63,7 +63,7 @@ public:
         return inv_count;
     }
 
-    //归并排序 O(NlogN)
+    //时间复杂度O(NlogN)
     int reversePairs_2(vector<int>& nums) 
     {
         int n = nums.size();

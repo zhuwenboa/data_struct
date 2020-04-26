@@ -49,7 +49,7 @@ private:
     priority_queue<ListNode*, vector<ListNode*>, compare> mem;
 };
 
-//分治的方法（类似于归并排序的合并阶段）
+//分治的方法（类似于归并排序的合并阶段）, 链表两两合并
 class Solution2
 {
 public:
@@ -83,6 +83,7 @@ public:
             p = p->next;
             l2 = l2->next;
         }
+        
         return head->next;
     } 
     ListNode* merge(vector<ListNode*>& lists, int low, int high)

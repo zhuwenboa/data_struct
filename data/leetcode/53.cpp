@@ -1,25 +1,22 @@
 #include<iostream>
 #include<vector>
-
+//最大子序和
 using namespace std;
 
-
-class Solution {
+class Solution 
+{
 public:
     int maxSubArray(vector<int>& nums) 
     {
         int res = nums[0];
-        vector<int> dp;
+        int pre;
         int count = nums.size();
-        
-        dp.emplace_back(nums[0]);
+        pre = nums[0];
+
         for(int i = 1; i < count; ++i)
         {
-            if(nums[i] + dp[i - 1] > nums[i])
-                dp.emplace_back(nums[i] + dp[i - 1]);
-            else
-               dp.emplace_back(nums[i]);
-            res = max(res, dp[i]);
+            pre = max(nums[i], pre+nums[i]);
+            res = max(res, pre);
         }
         return res;
     }

@@ -35,6 +35,7 @@ public:
         }
         return true;
     }
+    //实现转换小写函数
     char tolower(char c)
     {
         if(c >= 'A' && c <= 'Z')

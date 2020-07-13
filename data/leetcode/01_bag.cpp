@@ -32,7 +32,7 @@ public:
         {
             int w = weights[i-1];
             int v = value[i-1];
-            for(int j = 1; j <= w; ++j)
+            for(int j = W; j > 0; --j)
             {
                 if(j >= w)
                     dp[i][j] = max(dp[i-1][j], dp[i-1][j-w] + v);
@@ -43,3 +43,27 @@ public:
         return dp[N][N];
     }
 };
+
+/*
+空间优化
+
+在程序实现时可以对 0-1 背包做优化。观察状态转移方程可以知道，前 i 件物品的状态仅与前 i-1 件物品的状态有关，
+因此可以将 dp 定义为一维数组，其中 dp[j] 既可以表示 dp[i-1][j] 也可以表示 dp[i][j]。
+     
+    dp[j] = max(dp[j], dp[j-w] + v);
+*/
+
+    int Knapsack(int W, int N, vector<int>& weights, vector<int>& value)
+    {
+        vector<int> dp(W+1);
+        for(int i = 0; i < N; ++i) 
+        {
+            int w = weights[i-1];
+            int v = value[i-1];
+            for(int j = W; j >= w; --j)
+            {
+                dp[j] = max(dp[j], dp[j-w] + v);
+            }               
+        }
+        return dp[W];
+    }

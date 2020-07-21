@@ -23,6 +23,7 @@ void print(ListNode* head)
     std::cout << "\n";
 }
 
+//在链表内部进行反转操作
 class Solution 
 {
 public:
@@ -48,11 +49,47 @@ public:
                 pre->next = n1;
                 pre = pre->next;
                 n1 = n->next;
-                print(head);
+                //调试函数
+                //print(head);
             }
             count++;
         }
         return head;
+    }
+};
+
+//用链表存储偶链和奇链
+class Solution2 
+{
+public:
+    ListNode* oddEvenList(ListNode* head) 
+    {
+        if(head == NULL)
+            return head;
+        ListNode* l1 = head;
+        ListNode* l2 = head->next;
+        ListNode* l1_tmp = l1;
+        ListNode* l2_tmp = l2;
+        int count = 1;
+        head = head->next;
+        while(head != NULL)
+        {
+            head = head->next;
+            if(count % 2 == 1)
+            {
+                l1_tmp->next = head;
+                if(head != NULL)
+                    l1_tmp = head;
+            }
+            else
+            {
+                l2_tmp->next = head;
+                l2_tmp = head;
+            }
+            ++count;
+        }
+        l1_tmp->next = l2;
+        return l1;
     }
 };
 
@@ -69,6 +106,7 @@ int main()
         temp = p;
         ++i;
     }
-    Solution res;
+    Solution2 res;
     head = res.oddEvenList(head);
+    print(head);
 }

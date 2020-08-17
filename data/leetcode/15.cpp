@@ -8,7 +8,7 @@ using namespace std;
 class Solution 
 {
 public:
-    //时间复杂度为O(n2)
+    //时间复杂度为O(n^2)
     vector<vector<int>> threeSum(vector<int>& nums) 
     {
         vector< vector<int> > res;

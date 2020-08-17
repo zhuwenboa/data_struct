@@ -23,23 +23,19 @@ public:
         if(root == NULL)
             return res;
         stack<TreeNode*> st;
-        TreeNode* temp = root;
+        TreeNode* temp = root->left;
         st.push(root);
         while(!st.empty())
         {
-            while(temp->left != NULL)
+            while(temp != NULL)
             {
-                temp = temp->left;
                 st.push(temp);
+                temp = temp->left;
             }
-            TreeNode* p = st.top();
+            temp = st.top();
             st.pop();
-            res.emplace_back(p->val);
-            if(p->right != NULL)
-            {
-                st.push(p->right);
-                temp = p->right;
-            } 
+            res.emplace_back(temp->val);
+            temp = temp->right;
         }  
         return res;      
     }

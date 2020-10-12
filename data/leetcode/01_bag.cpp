@@ -28,7 +28,7 @@ public:
     int Knapsack(int W, int N, vector<int>& weights, vector<int>& value)
     {
         vector<vector<int>> dp(N+1, vector<int>(W+1));
-        for(int i = 0; i < N; ++i) 
+        for(int i = 1; i <= N; ++i) 
         {
             int w = weights[i-1];
             int v = value[i-1];
@@ -56,7 +56,7 @@ public:
     int Knapsack(int W, int N, vector<int>& weights, vector<int>& value)
     {
         vector<int> dp(W+1);
-        for(int i = 0; i < N; ++i) 
+        for(int i = 1; i <= N; ++i) 
         {
             int w = weights[i-1];
             int v = value[i-1];

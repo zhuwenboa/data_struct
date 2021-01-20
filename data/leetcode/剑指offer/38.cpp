@@ -12,6 +12,7 @@ public:
     {
         if(s.empty())
             return {};
+        //排序是为了将相同元素放到相邻的位置方便剪枝
         sort(s.begin(), s.end());
         vector<string> ans;
         vector<bool> judge(s.size(), false);

@@ -30,3 +30,27 @@ public:
     }
 };
 
+class Solution2 
+{
+public:
+    vector<vector<int>> subsets(vector<int>& nums) 
+    {
+        if(nums.empty())
+            return {};
+        vector<vector<int>> ans;
+        vector<int> cur;
+        backtrack(ans, nums, cur, 0);
+        return ans;
+    }
+    void backtrack(vector<vector<int>>& ans, vector<int>& nums, vector<int>& cur, int start)
+    {
+        ans.emplace_back(cur);
+        for(int i = start; i < nums.size(); ++i)
+        {
+            cur.emplace_back(nums[i]);
+            backtrack(ans, nums, cur, i+1);
+            cur.pop_back();
+        }           
+    }
+};
+

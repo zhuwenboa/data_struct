@@ -1,7 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<stack>
-
+#include<queue>
 using namespace std;
 
 struct TreeNode 
@@ -12,58 +12,58 @@ struct TreeNode
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-/*
-class Solution 
+//bfs法
+class Solution2 
 {
 public:
     bool isSubStructure(TreeNode* A, TreeNode* B) 
     {
         if(A == NULL || B == NULL)
             return false;
-        vector<int> Atree;
-        vector<int> Btree;
-        Traverse(A, Atree);
-        Traverse(B, Btree);
-        int j = 0;
-        for(int i = 0; i < Atree.size(); ++i)
+        queue<TreeNode*> que;
+        que.push(A);
+        while(!que.empty())
         {
-            if(j < Btree.size() && Atree[i] == Btree[j])
+            TreeNode* tmp = que.front();
+            que.pop();
+            if(tmp->val == B->val)
             {
-                ++j;
+                if(judge(tmp, B))
+                    return true;
             }
+            if(tmp->left != NULL)
+                que.push(tmp->left);
+            if(tmp->right != NULL)
+                que.push(tmp->right);
         }
-        if(j == Btree.size())
-            return true;
         return false;
+
     }
-    void Traverse(TreeNode* root, vector<int>& vec)
+    bool judge(TreeNode* A, TreeNode* B)
     {
-        stack<TreeNode*> st;
-        st.push(root);
-        TreeNode* temp = root;
-        vec.emplace_back(temp->val);
-        while(!st.empty())
+        queue<pair<TreeNode*, TreeNode*>> que;
+        que.push({A, B});
+        while(!que.empty())
         {
-            if(temp->left != NULL)
+            auto tmp = que.front();
+            que.pop();
+            TreeNode* t_A = tmp.first;
+            TreeNode* t_B = tmp.second;
+            if(t_B == NULL)
+                continue;
+            if(t_A == NULL)
+                return false;
+            if(t_A != NULL && t_B != NULL && t_A->val == t_B->val)
             {
-                st.push(temp->left);
-                vec.emplace_back(temp->val);
-                temp = temp->left;
+                que.push({t_A->left, t_B->left});
+                que.push({t_A->right, t_B->right});
             }
             else 
-            {
-                TreeNode* p = st.top();
-                st.pop();
-                if(p->right != NULL)
-                {
-                    st.push(p->right);
-                    temp = p->right;
-                }
-            }
+                return false;
         }
+        return true;
     }
 };
-*/
 
 class Solution 
 {

@@ -22,10 +22,10 @@ public:
         int judge = vec[l];
         while(l < r)
         {
-            while(l < r && vec[r] > judge)
+            while(l < r && vec[r] >= judge)
                 --r;
             swap(vec[l], vec[r]);
-            while(l < r && vec[l] < judge)
+            while(l < r && vec[l] <= judge)
                 ++l;
             swap(vec[l], vec[r]);
         }
@@ -35,7 +35,7 @@ public:
 
 int main()
 {
-    vector<int> vec{9, 8, 7, 6, 5, 4 ,3, 2, 1};
+    vector<int> vec{9, 8, 7, 6, 5, 4 ,3, 1, 1};
     Solution res;
     res.qsort(vec, 0, vec.size()-1);
     //swap(vec[0], vec[0]);
